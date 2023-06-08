@@ -131,12 +131,12 @@
         </script>
     @endif
 
-    @if (Session::has('error'))
+    {{-- @if (Session::has('error9'))
         <script>
             alertify.set('notifier', 'position', 'top-right');
-            alertify.error('CNIC card already exisat');
+            alertify.error('CNIC card already exist');
         </script>
-    @endif
+    @endif --}}
 
     @if (Session::has('error2'))
         <script>

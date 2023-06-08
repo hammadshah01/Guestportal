@@ -34,6 +34,7 @@ Route::middleware(['isadmin'])->group(function () {
 Route::post("/newvisitor",[BaseController::class, 'newvisitor'])->name("front.newvisitor");
 Route::post('/search-visitor', [BaseController::class, 'searchuser'])->name("front.search-visitor");
 Route::get('/visitor-result', [BaseController::class, 'visitorresult'])->name("visitorresulti");
+Route::get('newvisitor',[BaseController::class,"newregister"]);
 Route::post("/uservisitsave",[BaseController::class, "uservisitsave"])->name("front.uservisitsave");
 Route::get('/current-guest',[AdminController::class, "current_guest"]);
 Route::get ('visitor-out/{id}',[AdminController::class,"visitor_out"])->name('visitorexit');

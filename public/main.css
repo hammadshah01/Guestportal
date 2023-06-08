@@ -154,11 +154,17 @@
 }
 
 
-
+#capture-btn {
+    padding: 10px 40px;
+    border: 2px solid #495057;
+    background-color: #fff;
+    border-radius: 10px
+}
 
 #close-btn {
-    font-size: 25px;
-    color: #d63031
+    font-size: 25px !important;
+    color: #d63031 !important;
+
 }
 
 .login-head {

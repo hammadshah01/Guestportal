@@ -45,6 +45,7 @@ if(Auth::attempt(array('email'=>$request->input('email'),'password'=>$request->i
 
     public function searchuser(Request $request)
     {
+
         // CHECK THE THE EXIST USER OR CREATE A NEW ONE
         $num = visit::where('user_cnic', '=', $request->cnic)->count();
         $numcheck = visitor::where('cnic', '=', $request->cnic)->count();
@@ -65,19 +66,17 @@ if(Auth::attempt(array('email'=>$request->input('email'),'password'=>$request->i
             $cnic=$request->cnic;
             session::flash("error", 'Sorry no user found');
             $norecord = "Sorry No User Found";
-            return view('search-visitor', compact('norecord', 'department','cnic','pur'));
+            return view('newvisitor', compact('norecord', 'department','cnic','pur'));
         }
 
     }
 
     public function newvisitor(Request $request)
     {
-
-
-
         // IF USER EXIST CHECK
         if (visitor::where('cnic', '=', $request->cnic)->exists()) {
-            $request->session()->flash('error', "User already exist");
+            $request->session()->flash('error9', "User already exist");
+
             return redirect('/');
         }
         // IF USER EXIST END CHECK
@@ -119,6 +118,60 @@ if(Auth::attempt(array('email'=>$request->input('email'),'password'=>$request->i
 
 
         $visitor->save();
+
+
+// Adding Allies Users  (1)
+if($request->cnic2 != null){
+$visitor2 = new Visitor;
+        $visitor2->name = $request->name2;
+        $visitor2->role = 'guest';
+        $visitor2->status = 'satisfied';
+        $visitor2->cnic = $request->cnic2;
+        $imageData2 = $request->input('image2');
+        $fileName2 = time().'.jpg';
+        $myp='assets/admin/';
+        $savePath = public_path($myp.$fileName2);
+        $visitor2->image=$fileName2;
+        $data = base64_decode(preg_replace('#^data:image/\w+;base64,#i', '', $imageData2));
+        file_put_contents($savePath, $data);
+        $visitor2->save();
+}
+// Adding Allies Users  (2)
+if($request->cnic3 != null){
+$visitor3 = new Visitor;
+        $visitor3->name = $request->name3;
+        $visitor3->role = 'guest';
+        $visitor3->cnic = $request->cnic3;
+        $visitor3->status = 'satisfied';
+        $imageData3 = $request->input('image3');
+        $fileName3 = time().'.jpg';
+        $myp='assets/admin/';
+        $savePath = public_path($myp.$fileName3);
+        $visitor3->image=$fileName2;
+        $data = base64_decode(preg_replace('#^data:image/\w+;base64,#i', '', $imageData3));
+        file_put_contents($savePath, $data);
+        $visitor3->save();
+}
+
+// Adding Allies Users  (3)
+if($request->cnic4 != null){
+$visitor4 = new Visitor;
+        $visitor4->name = $request->name4;
+        $visitor4->role = 'guest';
+        $visitor4->cnic = $request->cnic4;
+        $visitor4->status = 'satisfied';
+        $imageData4 = $request->input('image4');
+        $fileName4 = time().'.jpg';
+        $myp='assets/admin/';
+        $savePath = public_path($myp.$fileName4);
+        $visitor4->image=$fileName4;
+        $data = base64_decode(preg_replace('#^data:image/\w+;base64,#i', '', $imageData4));
+        file_put_contents($savePath, $data);
+        $visitor4->save();
+}
+
+
+
         // ADDING CODE END
 
         $request->session()->flash('success1', "User Added Successfully");
@@ -141,6 +194,11 @@ if(Auth::attempt(array('email'=>$request->input('email'),'password'=>$request->i
         $visit->save();
         $request->session()->flash('success2', "User Added Successfully");
         return redirect('/');
+    }
+
+    public function newregister()
+    {
+       return  view('newvisitor');
     }
 
 

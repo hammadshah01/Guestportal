@@ -8,11 +8,11 @@
     h1,h4{
         font-family: 'Poppins', sans-serif;
     }
-    a i{
-font-size: 4rem;
-color: #2f3640;
-cursor: pointer;
-    }
+
+
+
+
+
     .no-user{
         position: absolute;
         top: 50%;
@@ -31,6 +31,13 @@ cursor: pointer;
         border-right: 1px solid #e2e2e2;
     }
 
+
+    .accordion-header button{
+    background-color: #34495e
+    color: #fff;
+    }
+
+
     @media only screen and (max-width: 600px) {
         .visitor-det{
             border:none;
@@ -44,7 +51,11 @@ cursor: pointer;
     @if(isset($visitor))
     @foreach ($visitor as $vis)
 
-
+    <a href="{{ url('/') }}" class="text-white">
+        <div id="close-btn" class="float-end pt-4 me-5">
+            <i class="bi bi-x-square-fill"></i>
+        </div>
+    </a>
     <div class="visitor-heading text-center my-4">
         <div class="row"></div>
         <img src="{{ asset("images/logo.png") }}" width="100px" height="auto" alt="">
@@ -144,27 +155,26 @@ cursor: pointer;
 
                 <div class="col">
                     <label for="">Admission Year <span class="stec text-danger">*</span></label>
-                    <input type="text" class="form-control" name="" readonly value="{{ $vis->yearofadmission }}" id="">
+                    <input type="text" class="form-control" name="" readonly value="{{$vis->yearofadmission }}" id="">
                 </div>
 
                 <div class="col">
                     <label for="">Year of Graduation <span class="stec text-danger">*</span></label>
 
-@if($vis->yearofgraduation==0)<input type="text" class="form-control" name="" readonly value="Present" id=""> @else <input type="text" class="form-control" name="" readonly  value="{{ $vis->yearofgraduation }}" id=""> @endif
+@if($vis->yearofgraduation==0)<input type="text" class="form-control" name="" readonly value="Present" id=""> @else <input type="text" class="form-control" name="" readonly  value="{{$vis->yearofgraduation }}" id=""> @endif
                 </div>
                 @endisset
                 <div class="col">
                     <label for="">Decipline Status <span class="stec text-danger">*</span></label>
-                    <input type="text" class="form-control" name="" readonly value="{{ $vis->status}}" id="">
+                    <input type="text" class="form-control" name="" readonly value="{{$vis->status}}" id="">
                 </div>
 
                 <div class="col">
                     <label for="">Number of Visits <span class="stec text-danger">*</span></label>
-                    <input type="text" class="form-control fw-bold" name="" readonly value="#{{ $num}}" id="">
+                    <input type="text" class="form-control fw-bold" name="" readonly value="#{{$num}}" id="">
                 </div>
             </div>
             </div>
-
     </div>
 
 
@@ -192,30 +202,311 @@ cursor: pointer;
     <option value="{{ $dep->id }}">{{ $dep->dname }}</option>
     @endforeach
 </select>
+
+
+
+
+<label class="mt-3" for="">Other Person with users  <span class="text-danger">*</span> </label>
+    <select name="person" class="person form form-select" id="">
+    <option value="1">Only Single Person</option>
+    <option value="2">2 person</option>
+    <option value="3">3 person</option>
+    <option value="4">4 person</option>
+    </select>
+
+
+
+
+
+
+
+<script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous"></script>
+</script>
+
+
+
+    <div class="accordion mt-3" id="accordionExample">
+        <div class="accordion-item  my-3">
+          <h2 class="accordion-header" id="headingOne">
+            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+              Visitor Profile 2
+            </button>
+          </h2>
+          <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+            <div class="person1 lt-1 card card-body   my-3">
+                <div class="row">
+                    <div class="container">
+                <label for="">Enter Name</label>
+            <input type="text"  class="form-control bg bg-light" name="name" id="">
+
+            <label for="">Enter CNIC (Optional)</label>
+            <input class="form-control bg bg-light" type="text"
+            data-inputmask="'mask': '99999-9999999-9'" class="cnic"
+            placeholder="00000-0000000-0" name="cnic"
+            required="">
+            <script>
+                $(":input").inputmask();
+            </script>
+            </div>
+                    <label for="">Person 2 Profile Image <span
+                            class="text-danger">*</span></label>
+                            <div class="col-lg-12 col-md-12 mt-2">
+                        <div class="w-25" id="my_camera"></div>
+                        <br />
+                       <center><button type="button" id="capture-btn"
+                            onclick="take_snapshot()"><i class="fa fa-camera"></i>
+                            Capture Image </button></center>
+                        <input type="hidden" name="image" class="image-tag"
+                            required>
+                    </div>
+                    <div class="col-lg-12 col-md-12 mt-3">
+                        <div id="results">Your captured image will appear here...
+                        </div>
+                    </div>
+                    <div class="col-md-12 text-center">
+                        <br />
+
+                    </div>
+                </div>
+
+
+
+
+                <script language="JavaScript">
+                    Webcam.set({
+                        width: 490,
+                        height: 350,
+                        image_format: 'jpeg',
+                        jpeg_quality: 90
+                    });
+
+                    Webcam.attach('#my_camera');
+
+                    function take_snapshot() {
+                        Webcam.snap(function(data_uri) {
+                            $(".image-tag").val(data_uri);
+                            document.getElementById('results').innerHTML = '<img src="' + data_uri + '"/>';
+                        });
+                    }
+                </script>
+
+            </div>
+          </div>
+        </div>
+        <div class="accordion-item my-3">
+          <h2 class="accordion-header" id="headingTwo">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                Visitor Profile 3
+            </button>
+          </h2>
+          <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+            <div class="person2 lt-2 card card-body mb-3">
+                <div class="row">
+                    <div class="container">
+                <label for="">Enter Name</label>
+            <input type="text"  class="form-control bg bg-light" name="name2" id="">
+
+            <label for="">Enter CNIC (Optional)</label>
+            <input  class="form-control bg bg-light" type="text"
+            data-inputmask="'mask': '99999-9999999-9'" class="cnic"
+            placeholder="00000-0000000-0" name="cnic2"
+            required="">
+            <script>
+                $(":input").inputmask();
+            </script>
+            </div>
+                    <label for="">Person 2 Profile Image <span
+                            class="text-danger">*</span></label>
+                            <div class="col-lg-12 col-md-12 mt-2">
+                        <div class="w-25" id="my_camera2"></div>
+                        <br />
+                       <center><button type="button" id="capture-btn"
+                            onclick="take_snapshot2()"><i class="fa fa-camera"></i>
+                            Capture Image </button></center>
+                        <input type="hidden" name="image2" class="image-tag2"
+                            required>
+                    </div>
+                    <div class="col-lg-12 col-md-12 mt-3">
+                        <div id="results2">Your captured image will appear here...
+                        </div>
+                    </div>
+                    <div class="col-md-12 text-center">
+                        <br />
+
+                    </div>
+                </div>
+
+
+
+
+                <script language="JavaScript">
+                    Webcam.set({
+                        width: 490,
+                        height: 350,
+                        image_format: 'jpeg',
+                        jpeg_quality: 90
+                    });
+
+                    Webcam.attach('#my_camera2');
+
+                    function take_snapshot2() {
+                        Webcam.snap(function(data_uri) {
+                            $(".image-tag2").val(data_uri);
+                            document.getElementById('results2').innerHTML = '<img src="' + data_uri + '"/>';
+                        });
+                    }
+                </script>
+
+            </div>
+
+
+          </div>
+        </div>
+        <div class="accordion-item my-3">
+          <h2 class="accordion-header" id="headingThree">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                Visitor Profile 4
+            </button>
+          </h2>
+          <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+            <div class="person2 lt-3 card card-body  mb-3">
+                <div class="row">
+                    <div class="container">
+                <label for="">Enter Name</label>
+            <input type="text"  class="form-control bg bg-light" name="name3" id="">
+
+            <label for="">Enter CNIC (Optional)</label>
+            <input  class="form-control bg bg-light" type="text"
+            data-inputmask="'mask': '99999-9999999-9'" class="cnic"
+            placeholder="00000-0000000-0" name="cnic3"
+            required="">
+            <script>
+                $(":input").inputmask();
+            </script>
+            </div>
+                    <label for="">Person 2 Profile Image <span
+                            class="text-danger">*</span></label>
+                            <div class="col-lg-12 col-md-12 mt-2">
+                        <div class="w-25" id="my_camera3"></div>
+                        <br />
+                       <center><button type="button" id="capture-btn"
+                            onclick="take_snapshot3()"><i class="fa fa-camera"></i>
+                            Capture Image </button></center>
+                        <input type="hidden" name="image3" class="image-tag3"
+                            required>
+                    </div>
+                    <div class="col-lg-12 col-md-12 mt-3">
+                        <div id="results3">Your captured image will appear here...
+                        </div>
+                    </div>
+                    <div class="col-md-12 text-center">
+                        <br />
+
+                    </div>
+                </div>
+
+
+
+
+                <script language="JavaScript">
+                    Webcam.set({
+                        width: 490,
+                        height: 350,
+                        image_format: 'jpeg',
+                        jpeg_quality: 90
+                    });
+
+                    Webcam.attach('#my_camera3');
+
+                    function take_snapshot3() {
+                        Webcam.snap(function(data_uri) {
+                            $(".image-tag3").val(data_uri);
+                            document.getElementById('results3').innerHTML = '<img src="' + data_uri + '"/>';
+                        });
+                    }
+                </script>
+
+            </div>
+
+          </div>
+        </div>
+      </div>
 <button type="submit" class="btn btn-success mt-4">Confirm Visit</button>
   </form>
-  <a href="{{ url('/') }}"><button class="btn btn-outline-primary mt-4">  Back to home</button></a>  </div>
+  </div>
 </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 @endforeach
 @endif
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+{{-- END OF THE FIRST SECTION --}}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 @if( isset($norecord))
 
-<div class="visitor-heading text-center my-4">
+{{-- <div class="visitor-heading text-center my-4">
     <img src="{{ asset("images/logo.png") }}" width="100px" height="auto" alt="">
     <h1>Visitor Information</h1>
-</div>
+</div> --}}
 <div class="container">
    <div class="create-visitor my-5">
 
 
-    <div class="success-message custom-toast alert alert-danger py-2">
+    {{-- <div class="success-message custom-toast alert alert-danger py-2">
         <div class="row">
             <div class="col-11">No visitor found create a new one !</div>
                    <div class="col-1 text-bold"><i class="fa-sharp fa-solid fa-xmark"></i></div>
             </div>
-        </div>
+        </div> --}}
 
 
 
@@ -242,12 +533,12 @@ cursor: pointer;
               <div class="col-lg-4 col-sm-12"> <label for="cnic">Enter Visitor CNIC No:</label> <div class="input-field form-control"> <span class="fa fa-address-card p-2"></span> <input required style="border:none;outline:none"  type="text" data-inputmask="'mask': '99999-9999999-9'" class="cnic"  placeholder="00000-0000000-0" value="{{$cnic}}"  name="cnic" required="" > </div></div>
              <div class="col col-lg-4 role col-sm-12">
                 <label for="">Role <i class="bi bi-gear"></i></label>
-        <select required name="role" id="" class="form form-select">
-            <option name="exstudent" value="exstudent">Ex-Student (NCA)</option>
-            <option name="currentstudent" value="currentstudent">Current Student</option>
-            <option name="guest" value="guest">Guest</option>
-            <option name="vendor" value="vendor">Vendor</option>
-        </select>
+                <select required name="role" id="" class="form form-select">
+                    <option name="exstudent" value="exstudent">Ex-Student (NCA)</option>
+                    <option name="currentstudent" value="currentstudent">Current Student</option>
+                    <option name="guest" value="guest">Guest</option>
+                    <option name="vendor" value="vendor">Vendor</option>
+                </select>
             </div>
 
 
@@ -288,13 +579,6 @@ cursor: pointer;
                 </select>
              </div>
         </div>
-
-
-
-
-
-
-
 
             <div class="row mt-5 bg bg-light py-3 ">
                 <label for="">Visitor Image <span class="text-danger">*</span></label>
@@ -362,7 +646,7 @@ cursor: pointer;
 
 
         <div class="col"> <label class="mt-4" for="">Other Person with users  <span class="text-danger">*</span> </label>
-        <select name="department" class="form form-select" id="">
+        <select name="person" class="form form-select" id="">
 
 
             <option value="1">1 person</option>
@@ -404,8 +688,7 @@ cursor: pointer;
 
         <script>
         $(".role").change(function() {
-
-        var firstVal = $("option:selected", this).val();
+        var firstVal=$("option:selected", this).val();
         if(firstVal=="currentstudent"){
             $('#g-year').val("Present");
             $('.student-section').show();
@@ -421,13 +704,7 @@ cursor: pointer;
             $('.student-section').show();
         }
         });
-
-
-
         </script>
-
-
-
     </div>
 </div>
 
@@ -497,7 +774,7 @@ $('.student-section').hide()
 
 
 
-{{-- For Student Found Successfully --}}
+
 <script>
     $(document).ready(()=>{
         var conceptName = $('#role').data('role');
@@ -523,7 +800,7 @@ $('.student-section').hide()
        }
     })
 </script>
-{{-- END STUDENT FOUND CODE FOR THE PURPOSE --}}
+
 
 
 @endsection
