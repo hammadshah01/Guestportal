@@ -1,5 +1,10 @@
 @extends('front-layout.inc.layout')
 @section('content')
+
+<style>
+  
+</style>
+
     <div class="container">
         <div class="login-head">
             <a href="{{ url('/') }}" class="text-white">
@@ -7,7 +12,7 @@
                     <i class="bi bi-x-square-fill"></i>
                 </div>
             </a>
-            <div class="form login-form w-25">
+            <div class="form login-form col-lg-3 col-md-8 col-sm-12">
                 <div class="form-group body-form">
                     <div class="nca-logo">
                         <center>
@@ -56,7 +61,7 @@
 @if (Session::has('error2'))
 
 <script>
-             alertify.set('notifier', 'position', 'top-right');
+            alertify.set('notifier', 'position', 'top-right');
             alertify.error('Please Login to access further');
 </script>
 

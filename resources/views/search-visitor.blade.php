@@ -276,8 +276,8 @@
 
                                                     <label for="">Enter CNIC (Optional)</label>
                                                     <input class="form-control bg bg-light" type="text"
-                                                        data-inputmask="'mask': '99999-9999999-9'" class="cnic"
-                                                        placeholder="00000-0000000-0" name="cnic" >
+                                                        data-inputmask="'mask': '99999-9999999-9'" class="cnic search_cnic"
+                                                        placeholder="00000-0000000-0" name="cnic" id="">
                                                     <script>
                                                         $(":input").inputmask();
                                                     </script>
@@ -328,7 +328,7 @@
 
                                                     <label for="">Enter CNIC (Optional)</label>
                                                     <input class="form-control bg bg-light" type="text"
-                                                        data-inputmask="'mask': '99999-9999999-9'" class="cnic"
+                                                        data-inputmask="'mask': '99999-9999999-9'" class="cnic search_cnic"
                                                         placeholder="00000-0000000-0" name="cnic2">
                                                     <script>
                                                         $(":input").inputmask();
@@ -382,7 +382,7 @@
 
                                                     <label for="">Enter CNIC (Optional)</label>
                                                     <input class="form-control bg bg-light" type="text"
-                                                        data-inputmask="'mask': '99999-9999999-9'" class="cnic"
+                                                        data-inputmask="'mask': '99999-9999999-9'" class="cnic search_cnic"
                                                         placeholder="00000-0000000-0" name="cnic3">
                                                     <script>
                                                         $(":input").inputmask();

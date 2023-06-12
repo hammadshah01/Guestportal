@@ -35,6 +35,11 @@
     font-size: 20px;
 }
 
+.cnic::placeholder{
+
+    padding-left:1rem ;
+}
+
 .login-btn {
 
     position: relative;
@@ -118,6 +123,23 @@
 }
 
 
+
+
+
+
+/* FOR TABLET MEDIA SCREEN */
+@media only screen and (max-width: 900px) {
+    .search-box-con {
+        box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+        padding: 0;
+        border: 10px solid #B7B6B6;
+    
+    }
+}
+
+
+
+
 @media only screen and (max-width: 600px) {
     .navbar {
         height: 130px;
@@ -126,7 +148,12 @@
     .hero-section {
         height: calc(100vh - 130px);
     }
-
+    .search-box-con {
+        box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+        padding: 0;
+        border: 10px solid #B7B6B6;
+    
+    }
 
     #navbarNav {
         padding: 10px;

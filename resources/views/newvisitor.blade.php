@@ -555,7 +555,7 @@
                                             </div>
                                         </div>
 
-                                        <div class="col"> <label class="mt-2" for="">Other Person with users  <span class="text-danger">*</span> </label>
+                                        <div class="col"> <label class="mt-2" for="">Other Person with users  <span class="text-danger fw-bold">*</span> </label>
                                             <select name="person" class="person form form-select" id="">
 
 
@@ -812,10 +812,9 @@
         <select name="purpose" class="form form-select" id="">
         @foreach ($pur as $pur)
         <option class="{{$pur->class}}" value="{{ $pur->id }}">{{ $pur->pname }}</option>
-
         @endforeach
-    </select></div>
-
+    </select>
+</div>
 
 
     <div class="col"> <label class="mt-4" for="">Department to visit  <span class="text-danger">*</span> </label>
@@ -824,32 +823,8 @@
             @foreach ($department as $dep)
             <option value="{{ $dep->id }}">{{ $dep->dname }}</option>
             @endforeach
-
-
-
-
-        </select></div>
-
-
-        {{-- <div class="col"> <label class="mt-4" for="">Other Person with users  <span class="text-danger">*</span> </label>
-        <select name="department" class="form form-select" id="">
-
-
-            <option value="1">1 person</option>
-            <option value="2">2 person</option>
-            <option value="3">3 person</option>
-            <option value="4">4 person</option>
-            <option value="5">5 person</option>
-            <option value="6">6 person</option>
-            <option value="7">7 person</option>
-            <option value="8">8 person</option>
-
-
-
-
-
-
-        </select></div> --}}
+        </select>
+    </div>
 </div>
 
                                     <ul class="list-inline pull-right">

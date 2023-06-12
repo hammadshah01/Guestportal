@@ -35,6 +35,7 @@ border-radius: 100%
         <table class="table mt-5" id="myTable" class="display">
             <thead>
                 <tr>
+                   
                     <th>Profile</th>
                     <th>Name</th>
                     <th>Father</th>
@@ -59,6 +60,7 @@ border-radius: 100%
 
 <td><img class="user-profile" src="{{asset('images/avatar2.jpg')}}" class="rounded-circle" alt=""></td>
 @endif
+
 <td>{{$vis->name}}</td>
 <td>{{$vis->fathername}}</td>
 <td>{{$vis->cnic}}</td>
@@ -93,7 +95,10 @@ border-radius: 100%
 
     <script>
         $(document).ready(function() {
-            $('#myTable').DataTable();
+            $('#myTable').DataTable({
+                "order": [[0, "desc"]]
+            });
+          
         });
     </script>
 

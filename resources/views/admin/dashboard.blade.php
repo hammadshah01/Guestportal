@@ -121,7 +121,7 @@
 
 
           <div class="card-body">
-            <h5 class="card-title">Reports <span>/Today</span></h5>
+            <h5 class="card-title">Reports <span>/Last 24 Hour</span></h5>
 
             <!-- Line Chart -->
             <div id="reportsChart"></div>

@@ -20,57 +20,30 @@ class AdminController extends Controller
 
   $t1=visit::whereTime('visits.created_at', '>=', \Carbon\Carbon::parse('06:00'))
     ->whereTime('visits.created_at', '<=', \Carbon\Carbon::parse('10:30'))->join("visitors","visits.user_cnic","=","visitors.cnic")->where('role',"exstudent")->count();
-
     $t2=visit::whereTime('visits.created_at', '>=', \Carbon\Carbon::parse('10:30'))
     ->whereTime('visits.created_at', '<=', \Carbon\Carbon::parse('12:00'))->join("visitors","visits.user_cnic","=","visitors.cnic")->where('role',"exstudent")->count();
-
-
     $t3=visit::whereTime('visits.created_at', '>=', \Carbon\Carbon::parse('12:00'))
     ->whereTime('visits.created_at', '<=', \Carbon\Carbon::parse('12:30'))->join("visitors","visits.user_cnic","=","visitors.cnic")->where('role',"exstudent")->count();
-
-
     $t4=visit::whereTime('visits.created_at', '>=', \Carbon\Carbon::parse('12:30'))
     ->whereTime('visits.created_at', '<=', \Carbon\Carbon::parse('13:30'))->join("visitors","visits.user_cnic","=","visitors.cnic")->where('role',"exstudent")->count();
-
-
     $t5=visit::whereTime('visits.created_at', '>=', \Carbon\Carbon::parse('13:30'))
     ->whereTime('visits.created_at', '<=', \Carbon\Carbon::parse('14:30'))->join("visitors","visits.user_cnic","=","visitors.cnic")->where('role',"exstudent")->count();
-
-
     $t6=visit::whereTime('visits.created_at', '>=', \Carbon\Carbon::parse('14:30'))
     ->whereTime('visits.created_at', '<=', \Carbon\Carbon::parse('15:30'))->join("visitors","visits.user_cnic","=","visitors.cnic")->where('role',"exstudent")->count();
-
-
-
     $t7=visit::whereTime('visits.created_at', '>=', \Carbon\Carbon::parse('15:30'))
     ->whereTime('visits.created_at', '<=', \Carbon\Carbon::parse('17:55'))->join("visitors","visits.user_cnic","=","visitors.cnic")->where('role',"exstudent")->count();
-
-
-
  $d1=visit::whereTime('visits.created_at', '>=', \Carbon\Carbon::parse('06:00'))
     ->whereTime('visits.created_at', '<=', \Carbon\Carbon::parse('10:30'))->join("visitors","visits.user_cnic","=","visitors.cnic")->where('role',"guest")->count();
-
     $d2=visit::whereTime('visits.created_at', '>=', \Carbon\Carbon::parse('10:30'))
     ->whereTime('visits.created_at', '<=', \Carbon\Carbon::parse('12:00'))->join("visitors","visits.user_cnic","=","visitors.cnic")->where('role',"guest")->count();
-
-
     $d3=visit::whereTime('visits.created_at', '>=', \Carbon\Carbon::parse('12:00'))
     ->whereTime('visits.created_at', '<=', \Carbon\Carbon::parse('12:30'))->join("visitors","visits.user_cnic","=","visitors.cnic")->where('role',"guest")->count();
-
-
     $d4=visit::whereTime('visits.created_at', '>=', \Carbon\Carbon::parse('12:30'))
     ->whereTime('visits.created_at', '<=', \Carbon\Carbon::parse('13:30'))->join("visitors","visits.user_cnic","=","visitors.cnic")->where('role',"guest")->count();
-
-
     $d5=visit::whereTime('visits.created_at', '>=', \Carbon\Carbon::parse('13:30'))
     ->whereTime('visits.created_at', '<=', \Carbon\Carbon::parse('14:30'))->join("visitors","visits.user_cnic","=","visitors.cnic")->where('role',"guest")->count();
-
-
     $d6=visit::whereTime('visits.created_at', '>=', \Carbon\Carbon::parse('14:30'))
     ->whereTime('visits.created_at', '<=', \Carbon\Carbon::parse('15:30'))->join("visitors","visits.user_cnic","=","visitors.cnic")->where('role',"guest")->count();
-
-
-
     $d7=visit::whereTime('visits.created_at', '>=', \Carbon\Carbon::parse('15:30'))
     ->whereTime('visits.created_at', '<=', \Carbon\Carbon::parse('17:55'))->join("visitors","visits.user_cnic","=","visitors.cnic")->where('role',"guest")->count();
 
@@ -78,28 +51,16 @@ class AdminController extends Controller
 
  $c1=visit::whereTime('visits.created_at', '>=', \Carbon\Carbon::parse('06:00'))
     ->whereTime('visits.created_at', '<=', \Carbon\Carbon::parse('10:30'))->join("visitors","visits.user_cnic","=","visitors.cnic")->where('role',"vendor")->count();
-
     $c2=visit::whereTime('visits.created_at', '>=', \Carbon\Carbon::parse('10:30'))
     ->whereTime('visits.created_at', '<=', \Carbon\Carbon::parse('12:00'))->join("visitors","visits.user_cnic","=","visitors.cnic")->where('role',"vendor")->count();
-
-
     $c3=visit::whereTime('visits.created_at', '>=', \Carbon\Carbon::parse('12:00'))
     ->whereTime('visits.created_at', '<=', \Carbon\Carbon::parse('12:30'))->join("visitors","visits.user_cnic","=","visitors.cnic")->where('role',"vendor")->count();
-
-
     $c4=visit::whereTime('visits.created_at', '>=', \Carbon\Carbon::parse('12:30'))
     ->whereTime('visits.created_at', '<=', \Carbon\Carbon::parse('13:30'))->join("visitors","visits.user_cnic","=","visitors.cnic")->where('role',"vendor")->count();
-
-
     $c5=visit::whereTime('visits.created_at', '>=', \Carbon\Carbon::parse('13:30'))
     ->whereTime('visits.created_at', '<=', \Carbon\Carbon::parse('14:30'))->join("visitors","visits.user_cnic","=","visitors.cnic")->where('role',"vendor")->count();
-
-
     $c6=visit::whereTime('visits.created_at', '>=', \Carbon\Carbon::parse('14:30'))
     ->whereTime('visits.created_at', '<=', \Carbon\Carbon::parse('15:30'))->join("visitors","visits.user_cnic","=","visitors.cnic")->where('role',"vendor")->count();
-
-
-
     $c7=visit::whereTime('visits.created_at', '>=', \Carbon\Carbon::parse('15:30'))
     ->whereTime('visits.created_at', '<=', \Carbon\Carbon::parse('17:30'))->join("visitors","visits.user_cnic","=","visitors.cnic")->where('role',"vendor")->count();
 
@@ -142,7 +103,7 @@ if($request->graduation_year=="Present"){
   $visitor->yearofgraduation=0;
 }elseif($request->graduation_year!="Present"){
   $visitor->yearofgraduation=$request->graduation_year;
-}
+} 
 if ($request->hasFile('visitor-img')) {
     $file = $request->file('visitor-img');
     $filename = time().'.'.$file->getClientOriginalExtension();
@@ -181,8 +142,10 @@ public function visit_history()
  ->join('departments','visits.department','=','departments.id')
 
  ->where('visits.gueststatus',"out")
- ->select('visits.id','visits.out','visits.user_cnic','visits.purpose','visits.created_at','visitors.name','visitors.fathername','visitors.role','departments.dname')->OrderBy('visits.id', 'DESC')
+ ->select('visits.id','visits.out','visits.user_cnic','visits.purpose','visits.created_at','visitors.name','visitors.fathername','visitors.role','departments.dname')
+ ->OrderBy('visits.id', 'DESC')
  ->get();
+
 
 return view('admin.visit-history',compact('visit'));
 }
@@ -207,8 +170,8 @@ else{
 
 public function visitor_out($id)
 {
-
-$current_date_time = Carbon::now()->toDateTimeString(); // Produces something like "2019-03-11 12:25:00"
+$current_date_time = Carbon::now()->toDateTimeString();
+// Produces something like "2019-03-11 12:25:00"
  $visit=visit::find($id);
  $visit->gueststatus="out";
  $visit->out=$current_date_time;
@@ -216,10 +179,8 @@ $current_date_time = Carbon::now()->toDateTimeString(); // Produces something li
 return redirect()->back()->with("success","User Exit From NCA");
 }
 
-
 public function uservisitdetail($id,$cnic)
 {
-
 $visitnum=visit::where("user_cnic",$cnic)->count();
 $visdet=visit::where('visits.id',$id)->join('visitors','visits.user_cnic',"=","visitors.cnic")
 ->join('departments','visits.department','=','departments.id')->join('purposes','visits.purpose','=','purposes.id')
@@ -267,7 +228,6 @@ public function visitoreditsave(Request $request)
         $file->move($destinationPath,$filename);
         $visitor->image=$filename;
       }
-
     $visitor->Save();
     return redirect()->back()->with('success',"Visitor Data Added Successfully");
 }

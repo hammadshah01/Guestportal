@@ -74,7 +74,7 @@
                     <form action="{{ url('search-visitor') }}" method="POST">
                         @csrf()
                         <div class="form">
-                            <div class="row g-0">
+                            <div class="row g-0 p-0">
                                 <div class="col-lg-10"><input class="w-100 py-3 cnic border-0" type="text"
                                         data-inputmask="'mask': '99999-9999999-9'" name="cnic" id="cnic"
                                         placeholder="ENTER CNIC NUMBER" required></div>
@@ -99,7 +99,7 @@
 
     {{-- making history tab --}}
 
-    <div class="row side-btn col-lg-1 col-md-1 col-sm-4">
+    <div class="side-btn col-1">
         <a href="{{ url('current-guest') }}">
             <div class="col-lg-4 col-md-12 side-his py-2 text-center text-white"><i class=" fa-regular fa-clock"></i></div>
         </a>
