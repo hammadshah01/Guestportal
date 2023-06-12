@@ -5,7 +5,6 @@
             width: 150px;
             height: 150px;
         }
-
         tr td {
             margin-left: 2rem
         }
@@ -14,20 +13,13 @@
 
     @foreach ($visdet as $vis)
         <section class="card card-body mt-4 p-5">
-
-
             <div class="person-detail">
-
-
-                <div class="container">
+                 <div class="container">
                     <div class="row">
-
-
                         <div class="col">
                             @if (isset($vis->image))
                                 <div class="person-img">
-                                    <img src="{{ asset("assets/admin/$vis->image") }}" class="img-thumbnail"
-                                        alt="">
+                                    <img src="{{ asset("assets/admin/$vis->image") }}" class="img-thumbnail">
                                 </div>
                             @else
                                 <div class="person-img">
@@ -53,9 +45,9 @@
 
                 <br>
                 <div class="profile-section container">
-                    <h3 style="font-family: 'Segoe ui'" class="mt-5">Profile</h3>
+                    <h3 style="font-family: 'Segoe ui';color:#c0392b" class="mt-5">Profile :</h3>
 
-                    <table class="table mt-4 p-3">
+                    <table class="table mt-2">
                         <tbody>
 
 
@@ -92,17 +84,13 @@
                                 <th>CNIC</th>
                                 <td>{{ $vis->user_cnic }}</td>
                             </tr>
-
-
                             @isset($vis->yearofadmission)
                                 <tr>
                                     <th>Year Of Admission</th>
                                     <td>{{ $vis->yearofadmission }}</td>
                                 </tr>
-
                                 <tr>
                                     <th>Year of Graduation</th>
-
                                     @if ($vis->yearofgraduation == '0')
                                         <td>Currently Study in NCA</td>
                                     @else
@@ -114,16 +102,12 @@
                                 <th>Decipline Status</th>
                                 <td>{{ $vis->status }}</td>
                             </tr>
-
                             <br>
-
-
                         </tbody>
-
                     </table>
                 </div>
                 <div class="profile-section container">
-                    <h3 style="font-family: 'Segoe ui'" class="mt-5">Visit Information</h3>
+                    <h3 style="font-family: 'Segoe ui'; color:#c0392b" class="mt-5">Visit Information :</h3>
 
                     <table class="table mt-4 p-3">
                         <tbody>
@@ -155,6 +139,33 @@
             </div>
             </div>
     @endforeach
+
+
+
+
+
+    @foreach($allies as $aly)
+    <div class="container">
+        <h3 style="font-family: 'Segoe ui';color:#c0392b" class="mt-5">Other Person with Visitor :</h3>
+<div class="row gap-1">
+    <div class="col-4"><div class="card card-body" >
+        <img src="{{ asset("assets/admin/$aly->image") }}" class="card-img-top w-100 mt-3" >
+        <div class="card-title">Name: {{$aly->name}}
+        </div>
+        @isset($aly->cnic)
+        <span class="card-description">CNIC: {{$aly->cnic}}</span>
+        @endisset
+     </div>
+    </div>
+</div>
+
+
+
+    </div>
+
+
+
+@endforeach
 
 
     @if (Session::has('successc'))

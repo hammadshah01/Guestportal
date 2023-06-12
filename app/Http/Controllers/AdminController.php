@@ -225,7 +225,9 @@ $visdet=visit::where('visits.id',$id)->join('visitors','visits.user_cnic',"=","v
 ->join('departments','visits.department','=','departments.id')->join('purposes','visits.purpose','=','purposes.id')
 ->select('visits.id','visits.out' , 'visits.gueststatus','visits.user_cnic','visits.purpose','visits.created_at', 'visitors.status','visitors.image',  'visitors.name','visitors.fathername','visitors.role','departments.dname','visitors.yearofadmission','visitors.yearofgraduation','purposes.pname')
 ->get();
-return view('admin.visit-detail',compact('visdet','visitnum'));
+$allies=visitor::where('referal_visit_id',$id)->where('referal',$cnic)->get();
+
+return view('admin.visit-detail',compact('visdet','visitnum','allies'));
 }
 public function all_visitor()
 {
@@ -275,7 +277,6 @@ function user_details($id)
 {
     $visdet=visitor::where('id',$id)->get();
     $cnic=$visdet[0]->cnic;
-
     $uservisit=visit::where('user_cnic',$cnic)->join('departments','visits.department','departments.id')
     ->join('purposes','visits.purpose','purposes.id')
     ->select('departments.dname','visits.id','visits.out','visits.created_at','visits.purpose','purposes.pname')->get();

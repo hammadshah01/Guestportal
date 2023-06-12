@@ -76,7 +76,7 @@ border-radius: 100%
 
 
 @if($vis->yearofgraduation=="0")
-<td>Currently Study in NCA</td>
+<td>Current Student</td>
 @elseif($vis->yearofgraduation==null)
 <td>--</td>
 @else

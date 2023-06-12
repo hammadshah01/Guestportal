@@ -15,6 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string("user_cnic")->nullable();
             $table->string('purpose')->nullable();
+            $table->integer('referal_visit_id')->nullable();
+            $table->string('referal')->nullable();
             $table->string('department')->nullable();
             $table->string('gueststatus')->default("in");
             $table->datetime("out")->nullable();

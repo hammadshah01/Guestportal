@@ -54,9 +54,9 @@
 
                 <br>
                 <div class="profile-section container">
-                    <h3 style="font-family: 'Segoe ui'" class="mt-5">Profile</h3>
+                    <h3 style="font-family: 'Segoe ui';color:#c0392b" class="mt-5">Profile</h3>
 
-                    <table class="table mt-4 p-3">
+                    <table class="table mt-2">
                         <tbody>
 
 
@@ -124,7 +124,7 @@
                     </table>
                 </div>
                 <div class="profile-section container">
-                    <h3 style="font-family: 'Segoe ui'" class="mt-5">Visit Information (Overall)</h3>
+                    <h3 style="font-family: 'Segoe ui';color:#c0392b" class="mt-5">Visit Information (Overall)</h3>
 
                     <table class="table mt-4 p-3 table-striped ">
 

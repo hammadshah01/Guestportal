@@ -14,8 +14,9 @@ return new class extends Migration
         Schema::create('visitors', function (Blueprint $table) {
             $table->id();
             $table->string("role")->nullable();
-            $table->integer("numofvisit")->default(0);
             $table->string("name")->nullable();
+            $table->string("referal")->nullable();
+            $table->integer("referal_visit_id")->nullable();
             $table->string("fathername")->nullable();
             $table->string("cnic")->nullable();
             $table->integer("yearofadmission")->nullable();

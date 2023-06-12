@@ -73,10 +73,11 @@ if(Auth::attempt(array('email'=>$request->input('email'),'password'=>$request->i
 
     public function newvisitor(Request $request)
     {
+
+
         // IF USER EXIST CHECK
         if (visitor::where('cnic', '=', $request->cnic)->exists()) {
             $request->session()->flash('error9', "User already exist");
-
             return redirect('/');
         }
         // IF USER EXIST END CHECK
@@ -89,6 +90,7 @@ if(Auth::attempt(array('email'=>$request->input('email'),'password'=>$request->i
         $visit->purpose = $request->purpose;
         $visit->user_cnic = $request->cnic;
         $visit->save();
+        $visit_id=$visit->id;
         // END STORING VISIT
 
 
@@ -106,8 +108,6 @@ if(Auth::attempt(array('email'=>$request->input('email'),'password'=>$request->i
         } elseif ($request->graduation_year != "Present") {
             $visitor->yearofgraduation = $request->graduation_year;
         }
-
-
         $imageData = $request->input('image');
         $fileName = time().'.jpg';
         $myp='assets/admin/';
@@ -115,8 +115,6 @@ if(Auth::attempt(array('email'=>$request->input('email'),'password'=>$request->i
         $visitor->image=$fileName;
         $data = base64_decode(preg_replace('#^data:image/\w+;base64,#i', '', $imageData));
         file_put_contents($savePath, $data);
-
-
         $visitor->save();
 
 
@@ -134,6 +132,8 @@ $visitor2 = new Visitor;
         $visitor2->image=$fileName2;
         $data = base64_decode(preg_replace('#^data:image/\w+;base64,#i', '', $imageData2));
         file_put_contents($savePath, $data);
+        $visitor2->referal_visit_id=$visit_id;
+        $visitor2->referal=$request->cnic;
         $visitor2->save();
 }
 // Adding Allies Users  (2)
@@ -150,6 +150,8 @@ $visitor3 = new Visitor;
         $visitor3->image=$fileName2;
         $data = base64_decode(preg_replace('#^data:image/\w+;base64,#i', '', $imageData3));
         file_put_contents($savePath, $data);
+        $visitor3->referal_visit_id=$visit_id;
+        $visitor3->referal=$request->cnic;
         $visitor3->save();
 }
 
@@ -167,6 +169,8 @@ $visitor4 = new Visitor;
         $visitor4->image=$fileName4;
         $data = base64_decode(preg_replace('#^data:image/\w+;base64,#i', '', $imageData4));
         file_put_contents($savePath, $data);
+        $visitor4->referal_visit_id=$visit_id;
+        $visitor4->referal=$request->cnic;
         $visitor4->save();
 }
 
@@ -178,9 +182,17 @@ $visitor4 = new Visitor;
         return redirect('/');
     }
 
+
+
+
+
+
+
+
+
+
     public function uservisitsave(request $request)
     {
-
 
         // SAVING A NEW VISIT FOR EXISTING USER
         $position=visit::where('gueststatus','in')->where('user_cnic',$request->user_cnic)->count();
@@ -191,7 +203,77 @@ $visitor4 = new Visitor;
         $visit->department = $request->department;
         $visit->purpose = $request->purpose;
         $visit->user_cnic = $request->user_cnic;
+        $visit->referal=$request->user_cnic;
         $visit->save();
+        $visit_id=$visit->id;
+
+
+              // REGISTSER FIRST ALLY USER NO1
+if($request->name || $request->cnic){
+    $visitor1= new visitor;
+    $visitor1->name=$request->name;
+    if($request->cnic){
+        $visitor1->cnic=$request->cnic;
+    }
+    $imageData = $request->input('image');
+            $fileName = time().'.jpg';
+            $myp='assets/admin/';
+            $savePath = public_path($myp.$fileName);
+            $visitor1->image=$fileName;
+            $data = base64_decode(preg_replace('#^data:image/\w+;base64,#i', '', $imageData));
+            file_put_contents($savePath, $data);
+            $visitor1->role='guest';
+            $visitor1->status="satisfied";
+            $visitor1->referal_visit_id=$visit_id;
+            $visitor1->referal=$request->user_cnic;
+            $visitor1->save();
+            }
+
+
+
+            // REGISTSER SECOND ALLY USER NO2
+    if($request->name2 || $request->cnic2){
+    $visitor2= new visitor;
+    $visitor2->name=$request->name2;
+    if($request->cnic2){
+        $visitor2->cnic=$request->cnic2;
+    }
+    $imageData2 = $request->input('image2');
+            $fileName2 = time().'.jpg';
+            $myp='assets/admin/';
+            $savePath = public_path($myp.$fileName2);
+            $visitor2->image=$fileName2;
+            $data = base64_decode(preg_replace('#^data:image/\w+;base64,#i', '', $imageData2));
+            file_put_contents($savePath, $data);
+            $visitor2->role='guest';
+            $visitor2->status="satisfied";
+            $visitor2->referal_visit_id=$visit_id;
+            $visitor2->referal=$request->user_cnic;
+            $visitor2->save();
+            }
+
+        // REGISTSER THIRD ALLY USER NO3
+    if($request->name3 || $request->cnic3){
+    $visitor3= new visitor;
+    $visitor3->name=$request->name3;
+    if($request->cnic3){
+        $visitor3->cnic=$request->cnic3;
+    }
+    $imageData3 = $request->input('image3');
+            $fileName3 = time().'.jpg';
+            $myp='assets/admin/';
+            $savePath = public_path($myp.$fileName3);
+            $visitor3->image=$fileName3;
+            $data = base64_decode(preg_replace('#^data:image/\w+;base64,#i', '', $imageData3));
+            file_put_contents($savePath, $data);
+            $visitor3->role='guest';
+            $visitor3->status="satisfied";
+            $visitor3->referal_visit_id=$visit_id;
+            $visitor3->referal=$request->user_cnic;
+            $visitor3->save();
+            }
+
+
         $request->session()->flash('success2', "User Added Successfully");
         return redirect('/');
     }
